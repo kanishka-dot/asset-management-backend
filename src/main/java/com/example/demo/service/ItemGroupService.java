@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,11 @@ public class ItemGroupService {
 	
 	public ItemGroup createNewItemGroup(ItemGroup itemgroup) {
 		return itemGroupRepository.save(itemgroup);
+		
+	}
+	
+	public List<ItemGroup> getItemGroups() {
+		return itemGroupRepository.findAll();
 		
 	}
 	
