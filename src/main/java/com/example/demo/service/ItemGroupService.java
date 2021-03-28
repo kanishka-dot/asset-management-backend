@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,18 @@ public class ItemGroupService {
 	@Autowired
 	private ItemGroupRepository itemGroupRepository;
 	
-	public ItemGroup createNewItemGroup(ItemGroup itemgroup) {
-		return itemGroupRepository.save(itemgroup);
+	public int createNewItemGroup(ItemGroup itemgroup) {
+		
+		Optional<ItemGroup> itemGroupIsExsist =  itemGroupRepository.findById(itemgroup.getId());
+		if(itemGroupIsExsist.isPresent()) {	
+			System.out.println(itemGroupIsExsist);
+			return 0;
+		}else {
+			itemGroupRepository.save(itemgroup);
+			return 1;
+		}
+		
+
 		
 	}
 	

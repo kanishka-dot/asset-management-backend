@@ -24,7 +24,7 @@ public class ItemGroupController {
 	
 	
 	@PostMapping("/itemgroup/createnewitemgroup")
-	public ItemGroup createNewSupplier(@RequestBody ItemGroup itemgroup) {
+	public int createNewSupplier(@RequestBody ItemGroup itemgroup) {
 		return itemGroupService.createNewItemGroup(itemgroup);
 	}
 	
