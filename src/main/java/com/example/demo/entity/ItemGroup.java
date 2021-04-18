@@ -16,6 +16,8 @@ public class ItemGroup {
 	private String id;
 	@Column(name = "name")
 	private String name;
+	@Column(name="depriciation")
+	private Double depriciation;
 	@Column(name = "mod_by")
 	private String mod_by;
 	@Column(name = "mod_date")
@@ -39,6 +41,13 @@ public class ItemGroup {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Double getDepriciation() {
+		return depriciation;
+	}
+	public void setDepriciation(Double depriciation) {
+		this.depriciation = depriciation;
 	}
 
 	public String getMod_by() {
@@ -75,7 +84,7 @@ public class ItemGroup {
 
 	@Override
 	public String toString() {
-		return "ItemGroup [id=" + id + ", name=" + name + ", mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by="
+		return "ItemGroup [id=" + id + ", name=" + name + ", depriciation=" + depriciation + ",mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by="
 				+ cre_by + ", cre_date=" + cre_date + "]";
 	}
 	

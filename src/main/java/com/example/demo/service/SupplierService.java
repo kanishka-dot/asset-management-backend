@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +16,21 @@ public class SupplierService {
 
 	public Supplier CreateSupplier(Supplier supplier) {
 
+		
+		
+		System.out.println("Supplier ID--->"+supplier.getSupplierid());
 		return supplierRepositary.save(supplier);
 
 	}
+	
+	public List<Supplier> getAllSupplier() {
+		return supplierRepositary.findAll();
+	}
 
-	public Supplier getSupplierById(String id) {
+	public Supplier getSupplierByName(String name) {
 
-		return supplierRepositary.findById(id).orElse(null);
+		return supplierRepositary.findByname(name);
+		 
 	}
 
 	public String updateSupplier(Supplier supplier) {

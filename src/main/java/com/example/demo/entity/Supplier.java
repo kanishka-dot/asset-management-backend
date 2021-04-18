@@ -5,6 +5,8 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
@@ -14,14 +16,17 @@ import javax.persistence.Table;
 public class Supplier  {
 
 	@Id
-	@Column(name="supplierid", nullable = false)
-	private String supplierid;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="supplierid")
+	private Integer supplierid;
 	@Column(name="name")
 	private String name;
 	@Column(name="address")
 	private String address;
 	@Column(name="nic")
 	private String nic;
+	@Column(name="tel")
+	private String tel;
 	@Column(name="status")
 	private String status;
 	@Column(name="remark")
@@ -39,11 +44,11 @@ public class Supplier  {
 
 	}
 
-	public String getSupplierid() {
+	public Integer getSupplierid() {
 		return supplierid;
 	}
 
-	public void setSupplierid(String supplierid) {
+	public void setSupplierid(Integer supplierid) {
 		this.supplierid = supplierid;
 	}
 
@@ -69,6 +74,14 @@ public class Supplier  {
 
 	public void setNic(String nic) {
 		this.nic = nic;
+	}
+	
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
 	public String getStatus() {
@@ -122,7 +135,7 @@ public class Supplier  {
 	@Override
 	public String toString() {
 		return "Supplier [supplierid=" + supplierid + ", name=" + name + ", address=" + address + ", nic=" + nic
-				+ ", status=" + status + ", remark=" + remark + ", mod_by=" + mod_by + ", mod_date=" + mod_date
+				+ ", tel=" + tel + ", status=" + status + ", remark=" + remark + ", mod_by=" + mod_by + ", mod_date=" + mod_date
 				+ ", cre_by=" + cre_by + ", cre_date=" + cre_date + "]";
 	}
 	

@@ -1,6 +1,9 @@
 package com.example.demo.controler;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +14,7 @@ import com.example.demo.entity.Supplier;
 import com.example.demo.service.SupplierService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class SupplierController {
 	
 	@Autowired
@@ -21,15 +25,23 @@ public class SupplierController {
 		return supplierService.CreateSupplier(supplier);
 	}
 	
-	@GetMapping("/supplier/getsupplier/{id}")
-	public Supplier  getSupplier(@PathVariable String id) {
+	@GetMapping("/supplier/getsupplier/{name}")
+	public Supplier  getSupplier(@PathVariable String name) {
 		
-		return supplierService.getSupplierById(id);
+		return supplierService.getSupplierByName(name);
 	}
 	
 	@PostMapping("/supplier/updateSUpplier")
 	public String updateSupplier(@RequestBody Supplier supplier) {
 		return supplierService.updateSupplier(supplier);
 	}
+	
+	@GetMapping("/supplier/getall")
+	public List<Supplier> getAllSuppliers(){
+		return supplierService.getAllSupplier();
+	}
+	
+	
+	
 
 }

@@ -4,8 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.Supplier;
 
-public interface SupplierRepositary extends JpaRepository<Supplier,String> {
+public interface SupplierRepositary extends JpaRepository<Supplier,Integer> {
 
-	Supplier findBysupplierid(String supplierid);
+	Supplier findBysupplierid(Integer supplierid);
+	Supplier findByname(String supplierName);
 
 }
