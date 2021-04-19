@@ -43,8 +43,12 @@ public class InvItem {
 	@Column(name="mod_date")
 	private String mod_date;
 	@Column(name="cre_by")
+	private String cre_by;
+	@Column(name="cre_date")
 	private String cre_date;
-
+	
+	
+	
 	public InvItem() {
 		
 	}
@@ -164,6 +168,16 @@ public class InvItem {
 	}
 
 
+	public String getCre_by() {
+		return cre_by;
+	}
+
+
+	public void setCre_by(String cre_by) {
+		this.cre_by = cre_by;
+	}
+
+
 	public String getCre_date() {
 		return cre_date;
 	}
@@ -179,8 +193,11 @@ public class InvItem {
 		return "InvItem [itemcode=" + itemcode + ", itemdesc=" + itemdesc + ", brand=" + brand + ", model=" + model
 				+ ", capacity=" + capacity + ", processor=" + processor + ", ram=" + ram + ", itemgroup=" + itemgroup
 				+ ", supplierid=" + supplierid + ", status=" + status + ", type=" + type + ", mod_by=" + mod_by
-				+ ", mod_date=" + mod_date + ", cre_date=" + cre_date + "]";
+				+ ", mod_date=" + mod_date + ", cre_by=" + cre_by + ", cre_date=" + cre_date + "]";
 	}
+
+
+
 	
 	
 	

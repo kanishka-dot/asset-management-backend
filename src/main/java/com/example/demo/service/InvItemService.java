@@ -20,8 +20,8 @@ public class InvItemService {
 		return invRepositary.save(invitem);
 	}
 	
-	public InvItem getInvItemById(Integer itemcode) {
-		return invRepositary.findById(itemcode).orElse(null);
+	public InvItem getInvItemById(String itemcode) {
+		return invRepositary.findByitemcode(itemcode);
 	}
 	
 
