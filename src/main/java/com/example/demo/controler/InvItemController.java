@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.InvItem;
 
 import com.example.demo.service.InvItemService;
+import com.example.demo.utils.Date;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -21,8 +22,11 @@ public class InvItemController {
 	@Autowired
 	private InvItemService invitemservice;
 
-
 	
+	
+public InvItemController() {
+	// TODO Auto-generated constructor stub
+}
 	@PostMapping("/inventory/createitem")
 	public InvItem createInvItem(@RequestBody InvItem invitem) {
 		return invitemservice.createInvItem(invitem);
@@ -40,6 +44,10 @@ public class InvItemController {
 		return invitemservice.getAllInvItem();
 	}
 	
+	@PostMapping("/inventory/updateItems")
+	public int updateInvItems(@RequestBody InvItem invItem) {
+		return invitemservice.updateItemCode(invItem);
+	}
 
 	
 	
