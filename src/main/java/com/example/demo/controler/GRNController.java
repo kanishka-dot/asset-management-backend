@@ -1,5 +1,7 @@
 package com.example.demo.controler;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +19,7 @@ public class GRNController {
 	private GRNService grnService;
 
 	@PostMapping("/inventory/savesuppliergrn")
-	public int saveGRN(@RequestBody GRN grn) {
+	public int saveGRN(@RequestBody List<GRN> grn) {
 		return grnService.saveGRN(grn);
 	}
 

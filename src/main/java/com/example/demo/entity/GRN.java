@@ -30,15 +30,15 @@ public class GRN implements Serializable{
 	@Column(name="seqno")
 	private Integer seqno;
 	@Column(name="date")
-	private String auth_date;
+	private String date;
 	@Column(name="serialno")
 	private String serialno;
 	@Column(name="status")
 	private String status;
 	@Column(name="dilvryprson")
-	private String dlvryprson;
+	private String dilvryprson;
 	@Column(name="auth")
-	private String authby;
+	private String auth;
 	@Column(name="itmcode")
 	private String itmcode;
 	@Column(name="barcode")
@@ -46,9 +46,9 @@ public class GRN implements Serializable{
 	@Column(name="cost")
 	private String cost;
 	@Column(name="supplierid")
-	private String supid;
+	private String supplierid;
 	@Column(name="warrenty_period")
-	private String wrtyprd;
+	private String warrenty_period;
 	@Column(name="refno")
 	private String refno;
 	@Column(name="mod_by")
@@ -59,7 +59,6 @@ public class GRN implements Serializable{
 	private String cre_by;
 	@Column(name="cre_date")
 	private String cre_date;
-	
 	public Integer getDocno() {
 		return docno;
 	}
@@ -72,24 +71,23 @@ public class GRN implements Serializable{
 	public void setDoccode(String doccode) {
 		this.doccode = doccode;
 	}
-	public Integer getLocid() {
+	public Integer getLocationid() {
 		return locationid;
 	}
-	public void setLocid(Integer locid) {
-		this.locationid = locid;
+	public void setLocationid(Integer locationid) {
+		this.locationid = locationid;
 	}
-	
 	public Integer getSeqno() {
 		return seqno;
 	}
 	public void setSeqno(Integer seqno) {
 		this.seqno = seqno;
 	}
-	public String getAuth_date() {
-		return auth_date;
+	public String getDate() {
+		return date;
 	}
-	public void setAuth_date(String auth_date) {
-		this.auth_date = auth_date;
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public String getSerialno() {
 		return serialno;
@@ -103,24 +101,18 @@ public class GRN implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	public String getDlvryprson() {
-		return dlvryprson;
+
+	public String getDilvryprson() {
+		return dilvryprson;
 	}
-	public void setDlvryprson(String dlvryprson) {
-		this.dlvryprson = dlvryprson;
+	public void setDilvryprson(String dilvryprson) {
+		this.dilvryprson = dilvryprson;
 	}
-	public String getWrtyprd() {
-		return wrtyprd;
+	public String getAuth() {
+		return auth;
 	}
-	public void setWrtyprd(String wrtyprd) {
-		this.wrtyprd = wrtyprd;
-	}
-	public String getAuthby() {
-		return authby;
-	}
-	public void setAuthby(String authby) {
-		this.authby = authby;
+	public void setAuth(String auth) {
+		this.auth = auth;
 	}
 	public String getItmcode() {
 		return itmcode;
@@ -140,17 +132,17 @@ public class GRN implements Serializable{
 	public void setCost(String cost) {
 		this.cost = cost;
 	}
-	public String getSupid() {
-		return supid;
+	public String getSupplierid() {
+		return supplierid;
 	}
-	public void setSupid(String supid) {
-		this.supid = supid;
+	public void setSupplierid(String supplierid) {
+		this.supplierid = supplierid;
 	}
-	public String getWrntyprod() {
-		return wrtyprd;
+	public String getWarrenty_period() {
+		return warrenty_period;
 	}
-	public void setWrntyprod(String wrtyprd) {
-		this.wrtyprd = wrtyprd;
+	public void setWarrenty_period(String warrenty_period) {
+		this.warrenty_period = warrenty_period;
 	}
 	public String getRefno() {
 		return refno;
@@ -164,7 +156,6 @@ public class GRN implements Serializable{
 	public void setMod_by(String mod_by) {
 		this.mod_by = mod_by;
 	}
-	
 	public String getMod_date() {
 		return mod_date;
 	}
@@ -185,15 +176,17 @@ public class GRN implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "GRN [docno=" + docno + ", doccode=" + doccode + ", locid=" + locationid + ", seqno=" + seqno + ", auth_date="
-				+ auth_date + ", serialno=" + serialno + ", status=" + status + ", dlvryprson=" + dlvryprson
-				+ ", authby=" + authby + ", itmcode=" + itmcode + ", barcode=" + barcode + ", cost=" + cost + ", supid="
-				+ supid + ", wrtyprd=" + wrtyprd + ", refno=" + refno + ", mod_by=" + mod_by + ", mod_date=" + mod_date
-				+ ", cre_by=" + cre_by + ", cre_date=" + cre_date + "]";
+		return "GRN [docno=" + docno + ", doccode=" + doccode + ", locationid=" + locationid + ", seqno=" + seqno
+				+ ", date=" + date + ", serialno=" + serialno + ", status=" + status + ", dlvryprson=" + dilvryprson
+				+ ", auth=" + auth + ", itmcode=" + itmcode + ", barcode=" + barcode + ", cost=" + cost
+				+ ", supplierid=" + supplierid + ", warrenty_period=" + warrenty_period + ", refno=" + refno
+				+ ", mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by=" + cre_by + ", cre_date=" + cre_date
+				+ "]";
 	}
-
 	
-
+	
+	
+	
 	
 	
 }

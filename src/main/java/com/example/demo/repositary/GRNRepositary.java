@@ -1,9 +1,11 @@
 package com.example.demo.repositary;
 
-import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.GRN;
 
-public interface GRNRepositary extends JpaRepositoryImplementation<GRN, Integer>{
+public interface GRNRepositary extends JpaRepository<GRN, Integer>{
 
 }
