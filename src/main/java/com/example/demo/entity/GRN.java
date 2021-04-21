@@ -1,24 +1,34 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "inv_doc_grn")
-public class GRN {
+@IdClass(GRN.class)
+public class GRN implements Serializable{
 
 	@Id	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="docno")
 	private Integer docno;
+	@Id	
 	@Column(name="doccode")
 	private String doccode;
+	@Id	
 	@Column(name="locationid")
-	private String locid;
+	private Integer locationid;
+	@Id	
+	@Column(name="seqno")
+	private Integer seqno;
 	@Column(name="date")
 	private String auth_date;
 	@Column(name="serialno")
@@ -26,7 +36,7 @@ public class GRN {
 	@Column(name="status")
 	private String status;
 	@Column(name="dilvryprson")
-	private String dilvryprson;
+	private String dlvryprson;
 	@Column(name="auth")
 	private String authby;
 	@Column(name="itmcode")
@@ -37,12 +47,14 @@ public class GRN {
 	private String cost;
 	@Column(name="supplierid")
 	private String supid;
-	@Column(name="wrntyprod")
-	private String wrntyprod;
+	@Column(name="warrenty_period")
+	private String wrtyprd;
 	@Column(name="refno")
 	private String refno;
 	@Column(name="mod_by")
 	private String mod_by;
+	@Column(name="mod_date")
+	private String mod_date;
 	@Column(name="cre_by")
 	private String cre_by;
 	@Column(name="cre_date")
@@ -60,11 +72,18 @@ public class GRN {
 	public void setDoccode(String doccode) {
 		this.doccode = doccode;
 	}
-	public String getLocid() {
-		return locid;
+	public Integer getLocid() {
+		return locationid;
 	}
-	public void setLocid(String locid) {
-		this.locid = locid;
+	public void setLocid(Integer locid) {
+		this.locationid = locid;
+	}
+	
+	public Integer getSeqno() {
+		return seqno;
+	}
+	public void setSeqno(Integer seqno) {
+		this.seqno = seqno;
 	}
 	public String getAuth_date() {
 		return auth_date;
@@ -84,11 +103,18 @@ public class GRN {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getDilvryprson() {
-		return dilvryprson;
+	
+	public String getDlvryprson() {
+		return dlvryprson;
 	}
-	public void setDilvryprson(String dilvryprson) {
-		this.dilvryprson = dilvryprson;
+	public void setDlvryprson(String dlvryprson) {
+		this.dlvryprson = dlvryprson;
+	}
+	public String getWrtyprd() {
+		return wrtyprd;
+	}
+	public void setWrtyprd(String wrtyprd) {
+		this.wrtyprd = wrtyprd;
 	}
 	public String getAuthby() {
 		return authby;
@@ -121,10 +147,10 @@ public class GRN {
 		this.supid = supid;
 	}
 	public String getWrntyprod() {
-		return wrntyprod;
+		return wrtyprd;
 	}
-	public void setWrntyprod(String wrntyprod) {
-		this.wrntyprod = wrntyprod;
+	public void setWrntyprod(String wrtyprd) {
+		this.wrtyprd = wrtyprd;
 	}
 	public String getRefno() {
 		return refno;
@@ -138,6 +164,13 @@ public class GRN {
 	public void setMod_by(String mod_by) {
 		this.mod_by = mod_by;
 	}
+	
+	public String getMod_date() {
+		return mod_date;
+	}
+	public void setMod_date(String mod_date) {
+		this.mod_date = mod_date;
+	}
 	public String getCre_by() {
 		return cre_by;
 	}
@@ -150,17 +183,17 @@ public class GRN {
 	public void setCre_date(String cre_date) {
 		this.cre_date = cre_date;
 	}
-	
-	
 	@Override
 	public String toString() {
-		return "GRN [docno=" + docno + ", doccode=" + doccode + ", locid=" + locid + ", auth_date=" + auth_date
-				+ ", serialno=" + serialno + ", status=" + status + ", dilvryprson=" + dilvryprson + ", authby="
-				+ authby + ", itmcode=" + itmcode + ", barcode=" + barcode + ", cost=" + cost + ", supid=" + supid
-				+ ", wrntyprod=" + wrntyprod + ", refno=" + refno + ", mod_by=" + mod_by + ", cre_by=" + cre_by
-				+ ", cre_date=" + cre_date + "]";
+		return "GRN [docno=" + docno + ", doccode=" + doccode + ", locid=" + locationid + ", seqno=" + seqno + ", auth_date="
+				+ auth_date + ", serialno=" + serialno + ", status=" + status + ", dlvryprson=" + dlvryprson
+				+ ", authby=" + authby + ", itmcode=" + itmcode + ", barcode=" + barcode + ", cost=" + cost + ", supid="
+				+ supid + ", wrtyprd=" + wrtyprd + ", refno=" + refno + ", mod_by=" + mod_by + ", mod_date=" + mod_date
+				+ ", cre_by=" + cre_by + ", cre_date=" + cre_date + "]";
 	}
+
 	
+
 	
 	
 }
