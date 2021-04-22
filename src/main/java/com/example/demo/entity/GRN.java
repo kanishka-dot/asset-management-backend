@@ -17,7 +17,6 @@ import javax.persistence.Table;
 public class GRN implements Serializable{
 
 	@Id	
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="docno")
 	private Integer docno;
 	@Id	

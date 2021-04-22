@@ -18,7 +18,7 @@ public class GRNService {
 
 	@Autowired
 	private GRNRepositary grnRepositary;
-	
+
 	@Autowired
 	private DocMasterService docMasterService;
 
@@ -29,7 +29,7 @@ public class GRNService {
 		em.getTransaction().begin();
 
 		try {
-			
+
 			int docno = docMasterService.getSeqNum("GRN");
 
 			for (int i = 0; i < grnList.size(); i++) {
@@ -44,10 +44,11 @@ public class GRNService {
 				updateGRN.setSeqno(i);
 				grnRepositary.save(updateGRN);
 			}
-
+			em.getTransaction().commit();
 			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
+			em.getTransaction().rollback();
 			return 0;
 		}
 	}
