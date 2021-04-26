@@ -29,6 +29,10 @@ public class InvItemService {
 		return invRepositary.findAll();
 	}
 	
+	public List<InvItem> getAllActInvItem(String status) {
+		return invRepositary.findByStatus(status);
+	}
+	
 	public int updateItemCode(InvItem invItem) {
 		InvItem updatingItemCode = invRepositary.findByitemcode(invItem.getItemcode());
 		

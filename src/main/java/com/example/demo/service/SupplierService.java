@@ -14,10 +14,7 @@ public class SupplierService {
 	@Autowired
 	private SupplierRepositary supplierRepositary;
 
-	public Supplier CreateSupplier(Supplier supplier) {
-
-		
-		
+	public Supplier CreateSupplier(Supplier supplier) {	
 		System.out.println("Supplier ID--->"+supplier.getSupplierid());
 		return supplierRepositary.save(supplier);
 
@@ -25,6 +22,11 @@ public class SupplierService {
 	
 	public List<Supplier> getAllSupplier() {
 		return supplierRepositary.findAll();
+	}
+	
+	//get all active supplier list 
+	public List<Supplier> getAllActSupplier(String status) {
+		return supplierRepositary.findBystatus(status);
 	}
 
 	public Supplier getSupplierByName(String name) {

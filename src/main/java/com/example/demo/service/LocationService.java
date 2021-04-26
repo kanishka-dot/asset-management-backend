@@ -26,8 +26,6 @@ public class LocationService {
 			locationRepository.save(location);
 			return 1;
 		}
-		
-
 	
 	}
 
@@ -58,6 +56,12 @@ public class LocationService {
 			return "Location Sucessfully Updated";
 		}
 
+	}
+	
+	
+	public List<Locations> getNotInLocations(Integer location) {
+		return locationRepository.findByLocationidNot(location);
+		
 	}
 
 }

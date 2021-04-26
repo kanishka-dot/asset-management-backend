@@ -48,6 +48,12 @@ public InvItemController() {
 	public int updateInvItems(@RequestBody InvItem invItem) {
 		return invitemservice.updateItemCode(invItem);
 	}
+	
+	@GetMapping("/inventory/getitems/status/{status}")
+	public List<InvItem> getAllActInvItem(@PathVariable String status) {
+		return invitemservice.getAllActInvItem(status);
+	}
+	
 
 	
 	

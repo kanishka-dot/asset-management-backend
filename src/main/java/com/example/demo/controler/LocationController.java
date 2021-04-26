@@ -45,5 +45,10 @@ public class LocationController {
 	}
 	
 	
+	@GetMapping("/location/get_all_locations/{location}")
+	public  List<Locations>  getNotInLocations(@PathVariable Integer location) {
+		return locationService.getNotInLocations(location);
+	}
+	
 	
 }

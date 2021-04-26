@@ -42,19 +42,22 @@ public class UserService {
 	}
 
 	public String updateUser(Users user) {
-		Users nowUser = userRepositary.findByName(user.getUserid());
-//		nowUser.setId(user.getId());
-		nowUser.setName(user.getName());
-		nowUser.setNic(user.getNic());
-		nowUser.setPassword(user.getPassword());
-		nowUser.setStatus(user.getStatus());
-		nowUser.setRoleid(user.getRoleid());
-		nowUser.setLocationid(user.getLocationid());
-		nowUser.setMod_by(user.getMod_by());
-		nowUser.setMod_date(user.getCre_date());
-		nowUser.setCre_by(user.getCre_by());
-		nowUser.setCre_date(user.getCre_date());
-		userRepositary.save(nowUser);
+		Users nowUser = userRepositary.findByuseridAndLocationid(user.getUserid(),user.getLocationid());
+		
+		
+		userRepositary.updateUser(user.getName(),user.getNic(),user.getStatus(), user.getRoleid(), user.getMod_by(),nowUser.getMod_date(),nowUser.getUserid(),nowUser.getLocationid());
+		
+		
+		
+//		nowUser.setName(user.getName());
+//		nowUser.setNic(user.getNic());
+//		nowUser.setStatus(user.getStatus());
+//		nowUser.setRoleid(user.getRoleid());
+//		nowUser.setMod_by(user.getMod_by());
+//		nowUser.setMod_date(user.getCre_date());
+//		nowUser.setCre_by(user.getCre_by());
+//		nowUser.setCre_date(user.getCre_date());
+//		userRepositary.save(nowUser);
 
 		return "Sucessfully User " + user.getUserid() + " Updated";
 	}

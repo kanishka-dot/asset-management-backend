@@ -41,6 +41,11 @@ public class SupplierController {
 		return supplierService.getAllSupplier();
 	}
 	
+	@GetMapping("/supplier/getsupplier/status/{status}")
+	public List<Supplier>  getActSupplier(@PathVariable String status) {
+		
+		return supplierService.getAllActSupplier(status);
+	}
 	
 	
 

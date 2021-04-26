@@ -1,20 +1,30 @@
 package com.example.demo.service;
 
-import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.example.demo.entity.GRN;
 import com.example.demo.repositary.GRNRepositary;
 
 @Service
 public class GRNService {
+	
+	private String returnval = "";
+	
+	
+
+	private String getReturnval() {
+		return returnval;
+	}
+
+
 
 	@Autowired
 	private GRNRepositary grnRepositary;
@@ -22,47 +32,51 @@ public class GRNService {
 	@Autowired
 	private DocMasterService docMasterService;
 
-	@PersistenceContext
-	EntityManager em;
-
-	public int saveGRN(List<GRN> grnList) {
-		em.getTransaction().begin();
+	@Transactional(rollbackFor = Exception.class)
+	public String saveGRN(ArrayList<GRN> grnList) {
 
 		try {
 
-			int docno = docMasterService.getSeqNum("GRN");
+			int docno = docMasterService.getDocNum("GRN");
+			
+			if(docno == 0) {
+				returnval = "UNSUCCESS GRN PARA NOT SET";
+				throw new Exception("Document Master GRN Parameter not set");
+			}
 
 			for (int i = 0; i < grnList.size(); i++) {
 
 				GRN updateGRN = grnList.get(i);
 
-				if (!IsSerialUnique(updateGRN.getSerialno())) {
-					return 3;
+				if (!isSerialUnique(updateGRN.getSerialno())) {
+					returnval = "UNSUCCESS SERIAL DUPLICATE "+updateGRN.getSerialno();
+					throw new Exception("Grn Serial number duplicate "+updateGRN.getSerialno());
+					
 				}
 
 				updateGRN.setDocno(docno);
 				updateGRN.setSeqno(i);
 				grnRepositary.save(updateGRN);
 			}
-			em.getTransaction().commit();
-			return 1;
+
+			docMasterService.updateDocNum("GRN");
+			returnval = "GRN CREATE SUCESSFULL";
+			return getReturnval();
 		} catch (Exception e) {
 			e.printStackTrace();
-			em.getTransaction().rollback();
-			return 0;
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			return getReturnval();
 		}
 	}
 
-	private boolean IsSerialUnique(String para_serialno) {
+	public boolean isSerialUnique(String para_serialno) {
 
-		Query qry = em.createNativeQuery("select a.serialno from inv_doc_grn a where a.serialno = ?");
-		qry.setParameter(1, para_serialno);
-		Object[] rslt = (Object[]) qry.getSingleResult();
+		GRN grn = grnRepositary.findBySerialno(para_serialno);
 
-		if (rslt[0] == null || rslt[0] == "") {
-			return true;
-		} else {
+		if (grn != null) {
 			return false;
+		} else {
+			return true;
 		}
 
 	}
