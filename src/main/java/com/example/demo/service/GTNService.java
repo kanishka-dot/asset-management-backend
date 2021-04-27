@@ -74,7 +74,7 @@ public class GTNService {
 				
 				updateInvLocation.setStatus("INTRAN");
 				updateInvLocation.setMod_date(date.toString());
-				updateInvLocation.setMod_by(updateGTN.getMod_by());
+				updateInvLocation.setMod_by(updateGTN.getCre_by());
 				invLocationRepositary.save(updateInvLocation);
 										
 				

@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.DocMaster;
-import com.example.demo.repositary.DocMaterRepositary;
+import com.example.demo.repositary.DocMasterRepositary;
 
 @Service
 public class DocMasterService {
 
 	@Autowired
-	private DocMaterRepositary docMasterRepositary;
+	private DocMasterRepositary docMasterRepositary;
 	
 	//getting the current document number (para document code)
 	public int getDocNum(String pra_doccode) {

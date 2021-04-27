@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.DocMaster;
 
-public interface DocMaterRepositary extends JpaRepository<DocMaster, String> {
+public interface DocMasterRepositary extends JpaRepository<DocMaster, String> {
 
 }
