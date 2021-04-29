@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.example.demo.entity.InvDispose;
+import com.example.demo.entity.InvDisposePK;
 import com.example.demo.entity.InvLocation;
 import com.example.demo.repositary.InvDisposeRepositary;
 import com.example.demo.repositary.InvLocationRepositary;
@@ -42,7 +43,7 @@ public class InvDisposeService {
 			}
 
 			for (int i = 0; i < pra_invList.size(); i++) {
-
+				InvDisposePK disposePK= new InvDisposePK();
 				InvDispose enty_updateDispose = pra_invList.get(i);
 				InvLocation enty_updateInvLocation = invLocationRepo.findById(enty_updateDispose.getSerialno())
 						.orElse(null);
@@ -52,8 +53,14 @@ public class InvDisposeService {
 				}
 
 				enty_updateDispose.setDoccode("GDN");
-				enty_updateDispose.setDocno(docnum);
-				enty_updateDispose.setSeq_no(i);
+				
+//				enty_updateDispose.setDocno(docnum);
+//				enty_updateDispose.setSeq_no(i);
+//				--------------------------------
+				disposePK.setDocno(docnum);
+				disposePK.setSeq_no(i);
+//				--------------------------------
+				enty_updateDispose.setInvDisposePK(disposePK);
 				enty_updateDispose.setApp_date("1000-01-01");
 				enty_updateDispose.setMod_date(date.toString());
 				enty_updateDispose.setCre_date(date.toString());
@@ -86,7 +93,8 @@ public class InvDisposeService {
 		ArrayList<String> result = new ArrayList<String>();
 		try {
 
-			List<InvDispose> enty_InvDisList = invDisposeRepositary.findBydocno(pra_docno);
+//			List<InvDispose> enty_InvDisList = invDisposeRepositary.findBydocno(pra_docno);
+			List<InvDispose> enty_InvDisList = invDisposeRepositary.findByInvDisposePKDocno(pra_docno);
 
 			for (int i = 0; i < enty_InvDisList.size(); i++) {
 
@@ -113,5 +121,20 @@ public class InvDisposeService {
 			return result;
 		}
 	}
+	
+	
+	public List<Object> getAvailableGDN(){
+		
+		return invDisposeRepositary.getAllAvailableGDN();
+			
+		
+	}
+	
+	
+	public List<InvDispose> getGDNForDocNo(Integer docno){
+		return invDisposeRepositary.findByInvDisposePKDocno(docno);
+	}
+	
+	
 
 }

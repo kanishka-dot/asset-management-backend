@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.InvLocation;
 import com.example.demo.service.InvlocationService;
 
-@CrossOrigin(origins = "*")
+
 @RestController
+@CrossOrigin(origins = "*")
 public class InvLocationController {
 
 	@Autowired

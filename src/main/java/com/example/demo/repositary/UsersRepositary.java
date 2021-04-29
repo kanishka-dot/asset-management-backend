@@ -14,6 +14,8 @@ public interface UsersRepositary extends JpaRepository<Users, String> {
 	Users findByName(String name);
 
 	Users findByuseridAndLocationid(String userid, Integer locationid);
+	
+	
 
 	List<Users> findByuserid(String userid);
 

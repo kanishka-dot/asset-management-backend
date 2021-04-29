@@ -11,10 +11,20 @@ import com.example.demo.entity.InvDispose;
 
 public interface InvDisposeRepositary extends JpaRepository<InvDispose, Integer>{
 
-	List<InvDispose> findBydocno(Integer docno);
+//	List<InvDispose> findBydocno(Integer docno);
+	
+	
+	List<InvDispose> findByInvDisposePKDocno(Integer docno);
 	
 	@Transactional
 	@Modifying
 	@Query(value = "UPDATE inv_doc_dispose u set status='APP', app_by=?1, app_date=?2  where u.docno = ?3 ", nativeQuery = true)
 	void updateGDNApproved(String app_by, String app_date, Integer docno);
+	
+	
+	@Transactional
+	@Modifying
+	@Query(value = "select  distinct(docno) from inv_doc_dispose u where u.status = 'NAP'", nativeQuery = true)
+	List<Object> getAllAvailableGDN();	
+	
 }

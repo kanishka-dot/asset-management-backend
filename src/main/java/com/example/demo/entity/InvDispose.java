@@ -1,27 +1,32 @@
 package com.example.demo.entity;
-
-import java.io.Serializable;
+ 
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="inv_doc_dispose")
-@IdClass(InvDispose.class)
-public class InvDispose implements Serializable{
+@Table(name="inv_doc_dispose") 
+public class InvDispose{
 
+	
+	
+	@EmbeddedId
+	private InvDisposePK invDisposePK;
+	
+//	@Id
+//	@Column(name = "docno")
+//	private Integer docno;
+//	@Id
+//	@Column(name = "seq_no")
+//	private Integer seq_no;
 	
 	@Column(name = "doccode")
 	private String doccode;
-	@Id
-	@Column(name = "docno")
-	private Integer docno;
-	@Id
-	@Column(name = "seq_no")
-	private Integer seq_no;
+	
 	@Column(name = "serialno")
 	private String serialno;
 	@Column(name = "itemcod")
@@ -46,24 +51,22 @@ public class InvDispose implements Serializable{
 	private String cre_date;
 	
 	
+	
+	
+	
+	public InvDisposePK getInvDisposePK() {
+		return invDisposePK;
+	}
+	public void setInvDisposePK(InvDisposePK invDisposePK) {
+		this.invDisposePK = invDisposePK;
+	}
 	public String getDoccode() {
 		return doccode;
 	}
 	public void setDoccode(String doccode) {
 		this.doccode = doccode;
 	}
-	public Integer getDocno() {
-		return docno;
-	}
-	public void setDocno(Integer docno) {
-		this.docno = docno;
-	}
-	public Integer getSeq_no() {
-		return seq_no;
-	}
-	public void setSeq_no(Integer seq_no) {
-		this.seq_no = seq_no;
-	}
+	 
 	public String getSerialno() {
 		return serialno;
 	}
@@ -135,11 +138,14 @@ public class InvDispose implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "InvDispose [doccode=" + doccode + ", docno=" + docno + ", seq_no=" + seq_no + ", serialno=" + serialno
+		return "InvDispose [invDisposePK=" + invDisposePK + ", doccode=" + doccode + ", serialno=" + serialno
 				+ ", itemcod=" + itemcod + ", remark=" + remark + ", techrec=" + techrec + ", status=" + status
 				+ ", app_by=" + app_by + ", app_date=" + app_date + ", mod_by=" + mod_by + ", mod_date=" + mod_date
 				+ ", cre_by=" + cre_by + ", cre_date=" + cre_date + "]";
 	}
+ 
+	
+	
 	
 	
 	

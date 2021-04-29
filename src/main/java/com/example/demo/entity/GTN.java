@@ -13,6 +13,11 @@ import javax.persistence.Table;
 @IdClass(GTN.class)
 public class GTN implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@Column(name="docno")
 	private Integer docno;
