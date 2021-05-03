@@ -1,23 +1,21 @@
 package com.example.demo.entity;
 
-import java.io.Serializable;
+
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="users")
-@IdClass(Users.class)
-public class Users  implements Serializable {
+public class Users  {
+	
+	@EmbeddedId
+	private UsersPK userPK;
+	
 
-	@Id
-	@Column(name = "userid", nullable = false)
-	private String userid;
+
 	@Column(name="name")
 	private String name;
 	@Column(name="nic")
@@ -28,9 +26,6 @@ public class Users  implements Serializable {
 	private String status;
 	@Column(name="roleid")
 	private Integer roleid;
-	@Id
-	@Column(name="locationid",nullable = false)
-	private Integer locationid;
 	@Column(name="mod_by")
 	private String mod_by;
 	@Column(name="mod_date")
@@ -41,18 +36,16 @@ public class Users  implements Serializable {
 	private String cre_date;
 	
 	
-	
-	public Users() {
 
+	public UsersPK getUserpk() {
+		return userPK;
+	}
+	public void setUserpk(UsersPK userpk) {
+		this.userPK = userpk;
 	}
 	
-
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -82,12 +75,6 @@ public class Users  implements Serializable {
 	}
 	public void setRoleid(Integer roleid) {
 		this.roleid = roleid;
-	}
-	public Integer getLocationid() {
-		return locationid;
-	}
-	public void setLocationid(Integer locationid) {
-		this.locationid = locationid;
 	}
 	
 	
@@ -129,18 +116,13 @@ public class Users  implements Serializable {
 	public void setCre_date(String cre_date) {
 		this.cre_date = cre_date;
 	}
-
-
 	@Override
 	public String toString() {
-		return "Users [userid=" + userid + ", name=" + name + ", nic=" + nic + ", password=" + password + ", status="
-				+ status + ", roleid=" + roleid + ", locationid=" + locationid + ", mod_by=" + mod_by + ", mod_date="
-				+ mod_date + ", cre_by=" + cre_by + ", cre_date=" + cre_date + "]";
+		return "Users [userpk=" + userPK + ", name=" + name + ", nic=" + nic + ", password=" + password + ", status="
+				+ status + ", roleid=" + roleid + ", mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by=" + cre_by
+				+ ", cre_date=" + cre_date + "]";
 	}
 
-
-
-	
 	
 	
 }

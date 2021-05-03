@@ -23,15 +23,15 @@ public class UserController {
 	private UserService userService;
 	
 	
-	@GetMapping("/user/getuser/{userid}")
-	public List<Users> findByuserid(@PathVariable String userid) {
-		return userService.findByuserid(userid);
-	}
-	
+//	@GetMapping("/user/getuser/{userid}")
+//	public List<Users> findByuserid(@PathVariable String userid) {
+//		return userService.findByuserid(userid);
+//	}
+//	
 	
 	@GetMapping("/user/getuser/{locationid}/{userid}")
 	public Users findByuserbyIDAndLocation(@PathVariable Integer locationid,@PathVariable String userid) {
-		return userService.findByuseridAndLocationid(userid, locationid);
+		return userService.findUsersByUseridLocationid(userid, locationid);
 	}
 	
 	@PostMapping("/user/createuser")

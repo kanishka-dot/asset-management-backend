@@ -1,6 +1,5 @@
 package com.example.demo.repositary;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,13 +10,13 @@ import com.example.demo.entity.Users;
 
 public interface UsersRepositary extends JpaRepository<Users, String> {
 
-	Users findByName(String name);
+//	Users findByName(String name);
 
-	Users findByuseridAndLocationid(String userid, Integer locationid);
+	Users findByUserPKUseridAndUserPKLocationid(String userid, Integer locationid);
 	
 	
 
-	List<Users> findByuserid(String userid);
+//	List<Users> findByuserid(String userid);
 
 	@Transactional
 	@Modifying
