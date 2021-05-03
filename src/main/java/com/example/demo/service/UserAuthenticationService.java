@@ -50,6 +50,10 @@ public class UserAuthenticationService {
 			if (user == null) {
 				throw new Exception("User Not found For the given location");
 			}
+			
+			if (user.getStatus() == "inactive") {
+				throw new Exception("User Account deactivated");
+			}
 
 			if (userService.passwordEncoder().matches(user_auth.getPassword(), user.getPassword())) {
 				Roles role = roleRepo.findById(user.getRoleid()).orElse(null);

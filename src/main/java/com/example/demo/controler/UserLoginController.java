@@ -25,13 +25,7 @@ public class UserLoginController {
 	@PostMapping("/login")
 	public HashMap<String,String> userLogInCredential(@RequestBody UserAuth userAuth){
 
- 		
-		//Test----------------------------
-//		user.add(userAuth.getUserid());
-//		user.add(userAuth.getLocationid().toString());
-//		user.add(userAuth.getPassword());
-		
-		//Test----------------------------
+
 		return userAuthenticationService.validateUser(userAuth);
 		
 		

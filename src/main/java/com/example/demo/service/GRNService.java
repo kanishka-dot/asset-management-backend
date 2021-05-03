@@ -15,14 +15,6 @@ import com.example.demo.repositary.GRNRepositary;
 
 @Service
 public class GRNService {
-	
-	private String returnval = "";
-	
-	
-
-	private String getReturnval() {
-		return returnval;
-	}
 
 
 
@@ -33,14 +25,16 @@ public class GRNService {
 	private DocMasterService docMasterService;
 
 	@Transactional(rollbackFor = Exception.class)
-	public String saveGRN(ArrayList<GRN> grnList) {
+	public ArrayList<String> saveGRN(ArrayList<GRN> grnList) {
 
+		ArrayList<String> result = new ArrayList<String>();
+		
+		
 		try {
 
 			int docno = docMasterService.getDocNum("GRN");
-			
-			if(docno == 0) {
-				returnval = "UNSUCCESS GRN PARA NOT SET";
+
+			if (docno == 0) {
 				throw new Exception("Document Master GRN Parameter not set");
 			}
 
@@ -49,23 +43,31 @@ public class GRNService {
 				GRN updateGRN = grnList.get(i);
 
 				if (!isSerialUnique(updateGRN.getSerialno())) {
-					returnval = "UNSUCCESS SERIAL DUPLICATE "+updateGRN.getSerialno();
-					throw new Exception("Grn Serial number duplicate "+updateGRN.getSerialno());
-					
+					throw new Exception("Inventory Item already exsist for given serial no " + updateGRN.getSerialno());
+
 				}
 
-				updateGRN.setDocno(docno);
-				updateGRN.setSeqno(i);
+				updateGRN.getGrnPk().setDocno(docno);
+				updateGRN.getGrnPk().setSeqno(i);
+
 				grnRepositary.save(updateGRN);
 			}
 
 			docMasterService.updateDocNum("GRN");
-			returnval = "GRN CREATE SUCESSFULL";
-			return getReturnval();
+			
+			
+			result.add("1");
+			result.add("GRN Successfully Saved - "+ docno);
+			
+			
+			return result;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			result.add("0");
+			result.add(e.getLocalizedMessage());
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-			return getReturnval();
+			return result;
 		}
 	}
 

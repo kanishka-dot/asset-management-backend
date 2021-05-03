@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,21 +14,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "inv_doc_grn")
-@IdClass(GRN.class)
-public class GRN implements Serializable{
+public class GRN {
 
-	@Id	
-	@Column(name="docno")
-	private Integer docno;
-	@Id	
-	@Column(name="doccode")
-	private String doccode;
-	@Id	
-	@Column(name="locationid")
-	private Integer locationid;
-	@Id	
-	@Column(name="seqno")
-	private Integer seqno;
+	
+	@EmbeddedId
+	private GRNPK grnPk;
+	
+	
+
 	@Column(name="date")
 	private String date;
 	@Column(name="serialno")
@@ -58,29 +52,16 @@ public class GRN implements Serializable{
 	private String cre_by;
 	@Column(name="cre_date")
 	private String cre_date;
-	public Integer getDocno() {
-		return docno;
+
+	
+	
+	
+	
+	public GRNPK getGrnPk() {
+		return grnPk;
 	}
-	public void setDocno(Integer docno) {
-		this.docno = docno;
-	}
-	public String getDoccode() {
-		return doccode;
-	}
-	public void setDoccode(String doccode) {
-		this.doccode = doccode;
-	}
-	public Integer getLocationid() {
-		return locationid;
-	}
-	public void setLocationid(Integer locationid) {
-		this.locationid = locationid;
-	}
-	public Integer getSeqno() {
-		return seqno;
-	}
-	public void setSeqno(Integer seqno) {
-		this.seqno = seqno;
+	public void setGrnPk(GRNPK grnPk) {
+		this.grnPk = grnPk;
 	}
 	public String getDate() {
 		return date;
@@ -175,12 +156,11 @@ public class GRN implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "GRN [docno=" + docno + ", doccode=" + doccode + ", locationid=" + locationid + ", seqno=" + seqno
-				+ ", date=" + date + ", serialno=" + serialno + ", status=" + status + ", dlvryprson=" + dilvryprson
-				+ ", auth=" + auth + ", itmcode=" + itmcode + ", barcode=" + barcode + ", cost=" + cost
-				+ ", supplierid=" + supplierid + ", warrenty_period=" + warrenty_period + ", refno=" + refno
-				+ ", mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by=" + cre_by + ", cre_date=" + cre_date
-				+ "]";
+		return "GRN [grnPk=" + grnPk + ", date=" + date + ", serialno=" + serialno + ", status=" + status
+				+ ", dilvryprson=" + dilvryprson + ", auth=" + auth + ", itmcode=" + itmcode + ", barcode=" + barcode
+				+ ", cost=" + cost + ", supplierid=" + supplierid + ", warrenty_period=" + warrenty_period + ", refno="
+				+ refno + ", mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by=" + cre_by + ", cre_date="
+				+ cre_date + "]";
 	}
 	
 	

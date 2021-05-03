@@ -29,7 +29,7 @@ public class GRNController {
 	
 	
 	@PostMapping("/inventory/savesuppliergrn")
-	public String saveGRN(@RequestBody ArrayList<GRN> grn) {
+	public ArrayList<String> saveGRN(@RequestBody ArrayList<GRN> grn) {
 		return grnService.saveGRN(grn);
 	}
 	
