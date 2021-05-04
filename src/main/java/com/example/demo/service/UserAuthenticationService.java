@@ -32,6 +32,9 @@ public class UserAuthenticationService {
 	@Autowired
 	RoleRepositary roleRepo;
 
+	@Autowired
+	LocationRepository locRepo;
+
 	public HashMap<String, String> validateUser(UserAuth user_auth) {
 
 		HashMap<String, String> result = new HashMap<String, String>();
@@ -50,21 +53,29 @@ public class UserAuthenticationService {
 			if (user == null) {
 				throw new Exception("User Not found For the given location");
 			}
-			
-			if (user.getStatus() == "inactive") {
+
+			if (user.getStatus().equalsIgnoreCase("inactive")) {
 				throw new Exception("User Account deactivated");
 			}
 
+			System.out.println("user status ------>" + user.getStatus());
+
 			if (userService.passwordEncoder().matches(user_auth.getPassword(), user.getPassword())) {
 				Roles role = roleRepo.findById(user.getRoleid()).orElse(null);
-				
+				Locations location = locRepo.findBylocationid(user.getUserpk().getLocationid());
+
 				if (role == null) {
 					throw new Exception("User Role Not Define");
+				}
+
+				if (location == null) {
+					throw new Exception("User Location Not Define");
 				}
 
 				result.put("SUCCESS", "VALID USER");
 				result.put("USERID", user.getUserpk().getUserid());
 				result.put("LOCATION", user.getUserpk().getLocationid().toString());
+				result.put("LOCATIONNAME", location.getLocationname());
 				result.put("ROLE", role.getName());
 				return result;
 			} else {
@@ -78,6 +89,40 @@ public class UserAuthenticationService {
 			result.put("FAILED", e.getMessage());
 			return result;
 
+		}
+
+	}
+
+	public ArrayList<String> changePassword(String pra_userid, Integer pra_locationId, String pra_currPaswd,
+			String pra_newPaswd) {
+
+
+		ArrayList<String> result = new ArrayList<String>();
+		
+		try {
+
+			Users user = userRepo.findByUserPKUseridAndUserPKLocationid(pra_userid, pra_locationId);
+
+			if (user == null) {
+				throw new Exception("User Not Found.");
+			}
+
+			if (userService.passwordEncoder().matches(pra_currPaswd, user.getPassword())) {
+				user.setPassword(userService.passwordEncoder().encode(pra_newPaswd));
+				userRepo.save(user);
+			} else {
+				throw new Exception("Invalid Current Password.");
+			}
+			
+			result.add("1");
+			result.add("Password successfully updated");
+			
+			return result;
+
+		} catch (Exception e) {
+			result.add("0");
+			result.add(e.getLocalizedMessage());
+			return result;
 		}
 
 	}

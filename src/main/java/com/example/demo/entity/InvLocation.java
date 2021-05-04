@@ -20,6 +20,8 @@ public class InvLocation   {
 	private Integer locid;
 	@Column(name = "itemcode")
 	private String itemcode;
+	@Column(name = "temploc")
+	private Integer temploc;
 	@Column(name = "status")
 	private String status;
 	@Column(name = "mod_by")
@@ -51,6 +53,12 @@ public class InvLocation   {
 		this.itemcode = itemcode;
 	}
 		
+	public Integer getTemploc() {
+		return temploc;
+	}
+	public void setTemploc(Integer temploc) {
+		this.temploc = temploc;
+	}
 	public String getStatus() {
 		return status;
 	}
@@ -83,10 +91,11 @@ public class InvLocation   {
 	}
 	@Override
 	public String toString() {
-		return "InvLocation [serialno=" + serialno + ", locid=" + locid + ", itemcode=" + itemcode + ", status="
-				+ status + ", mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by=" + cre_by + ", cre_date="
-				+ cre_date + "]";
+		return "InvLocation [serialno=" + serialno + ", locid=" + locid + ", itemcode=" + itemcode + ", temploc="
+				+ temploc + ", status=" + status + ", mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by="
+				+ cre_by + ", cre_date=" + cre_date + "]";
 	}
+
 
 	
 	

@@ -53,8 +53,6 @@ public class InvItemService {
 			updatingItemCode.setType(invItem.getType());
 			updatingItemCode.setMod_by(invItem.getMod_by());
 			updatingItemCode.setMod_date(invItem.getMod_date());
-			updatingItemCode.setCre_by(invItem.getCre_by());
-			updatingItemCode.setCre_date(invItem.getCre_date());
 			invRepositary.save(updatingItemCode);
 			
 			return 1;
