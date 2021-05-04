@@ -4,24 +4,26 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 
 @Embeddable
-public class GRNPK implements Serializable{
+public class GRNPK implements Serializable {
 
-
+	
+	
+		
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name="docno")
+	
+	@Column(name = "docno")
 	private Integer docno;
-	@Column(name="doccode")
+	@Column(name = "doccode")
 	private String doccode;
-	@Column(name="locationid")
+	@Column(name = "locationid")
 	private Integer locationid;
-	@Column(name="seqno")
+	@Column(name = "seqno")
 	private Integer seqno;
 	
 	
@@ -49,6 +51,8 @@ public class GRNPK implements Serializable{
 	public void setSeqno(Integer seqno) {
 		this.seqno = seqno;
 	}
+	
+	
 	
 	
 	

@@ -23,15 +23,19 @@ public class GRNController {
 
 	@Autowired
 	private GRNService grnService;
-
-	
-
 	
 	
 	@PostMapping("/inventory/savesuppliergrn")
 	public ArrayList<String> saveGRN(@RequestBody ArrayList<GRN> grn) {
 		return grnService.saveGRN(grn);
 	}
+	
+	
+	@PostMapping("/inventory/grn/approvegrn/{docno}/{user}")
+	public ArrayList<String> approveGRN(@PathVariable Integer docno, @PathVariable String user) {
+		return grnService.approveGRN(docno, user);
+	}
+	
 	
 	
 	@GetMapping("/inventory/getgrnserial/{serial}")

@@ -16,6 +16,8 @@ public interface InvDisposeRepositary extends JpaRepository<InvDispose, Integer>
 	
 	List<InvDispose> findByInvDisposePKDocno(Integer docno);
 	
+	
+	
 	@Transactional
 	@Modifying
 	@Query(value = "UPDATE inv_doc_dispose u set status='APP', app_by=?1, app_date=?2  where u.docno = ?3 ", nativeQuery = true)
