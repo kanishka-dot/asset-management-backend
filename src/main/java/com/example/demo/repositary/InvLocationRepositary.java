@@ -12,13 +12,13 @@ import com.example.demo.entity.InvLocation;
 public interface InvLocationRepositary extends JpaRepository<InvLocation, String> {
 
 	
-	List<InvLocation> findBylocidAndStatus(Integer locid, String status);
+	List<InvLocation> findByTemplocAndStatus(Integer locid, String status);
 	InvLocation findBySerialno(String serialno);
 	
 	@Transactional
 	@Modifying
-	@Query(value = "UPDATE inv_location u set status='LOC', locid=?1  where u.serialno = ?2 ", nativeQuery = true)
-	void updateInvLocation(Integer locid, String serialno);
+	@Query(value = "UPDATE inv_location u set status='LOC' where u.serialno = ?1 ", nativeQuery = true)
+	void updateInvLocation(String serialno);
 	
 	
 }

@@ -16,6 +16,11 @@ public class InvItemService {
 	@Autowired
 	private InvItemRepository invRepositary;
 	
+	public Integer getInvItemCount() {
+		return invRepositary.getActiveItemCount();
+	}
+	
+	
 	public InvItem createInvItem(InvItem invitem) {
 		return invRepositary.save(invitem);
 	}
@@ -29,8 +34,8 @@ public class InvItemService {
 		return invRepositary.findAll();
 	}
 	
-	public List<InvItem> getAllActInvItem(String status) {
-		return invRepositary.findByStatus(status);
+	public List<InvItem> getAllActInvItem(String status, String type) {
+		return invRepositary.findByStatusAndType(status, type);
 	}
 	
 	public int updateItemCode(InvItem invItem) {

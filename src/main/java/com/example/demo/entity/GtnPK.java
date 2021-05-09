@@ -5,26 +5,24 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+
 @Embeddable
-public class GrnPK implements Serializable {
+public class GtnPK implements Serializable{
 
 	
-	
-		
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
-	@Column(name = "docno")
+	@Column(name="docno")
 	private Integer docno;
-	@Column(name = "doccode")
+	@Column(name="seq_no")
+	private Integer seq_no;
+	@Column(name="doccode")
 	private String doccode;
-	@Column(name = "locationid")
-	private Integer locationid;
-	@Column(name = "seqno")
-	private Integer seqno;
+	@Column(name="itemcode")
+	private String itemcode;
 	
 	
 	public Integer getDocno() {
@@ -33,24 +31,25 @@ public class GrnPK implements Serializable {
 	public void setDocno(Integer docno) {
 		this.docno = docno;
 	}
+	public Integer getSeq_no() {
+		return seq_no;
+	}
+	public void setSeq_no(Integer seq_no) {
+		this.seq_no = seq_no;
+	}
 	public String getDoccode() {
 		return doccode;
 	}
 	public void setDoccode(String doccode) {
 		this.doccode = doccode;
 	}
-	public Integer getLocationid() {
-		return locationid;
+	public String getItemcode() {
+		return itemcode;
 	}
-	public void setLocationid(Integer locationid) {
-		this.locationid = locationid;
+	public void setItemcode(String itemcode) {
+		this.itemcode = itemcode;
 	}
-	public Integer getSeqno() {
-		return seqno;
-	}
-	public void setSeqno(Integer seqno) {
-		this.seqno = seqno;
-	}
+	
 	
 	
 	

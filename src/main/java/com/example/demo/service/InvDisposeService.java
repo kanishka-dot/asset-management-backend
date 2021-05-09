@@ -29,6 +29,13 @@ public class InvDisposeService {
 
 	@Autowired
 	InvLocationRepositary invLocationRepo;
+	
+	
+	
+	public Integer getDisInvCount() {
+		return invDisposeRepositary.getDisItemCount();
+	}
+	
 
 	@Transactional
 	public ArrayList<String> addDisposeInventory(List<InvDispose> pra_invList) {
@@ -101,7 +108,7 @@ public class InvDisposeService {
 				InvDispose enty_singleDis = enty_InvDisList.get(i);
 
 				InvLocation enty_invLoc = invLocationRepo.findBySerialno(enty_singleDis.getSerialno());
-				enty_invLoc.setStatus("DIS");
+				enty_invLoc.setStatus("EXE");
 				enty_invLoc.setMod_date(date.toString());
 				enty_invLoc.setMod_by(pra_user);
 				invLocationRepo.save(enty_invLoc);
@@ -123,7 +130,7 @@ public class InvDisposeService {
 	}
 	
 	
-	public List<Object> getAvailableGDN(){
+	public List<InvDispose> getAvailableGDN(){
 		
 		return invDisposeRepositary.getAllAvailableGDN();
 			

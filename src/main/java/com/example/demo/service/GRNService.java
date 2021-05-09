@@ -56,10 +56,6 @@ public class GRNService {
 				updateGRN.getGrnPK().setDocno(docno);
 				updateGRN.getGrnPK().setSeqno(i);
 				
-				
-				
-				
-
 				grnRepositary.save(updateGRN);
 			}
 
@@ -78,6 +74,9 @@ public class GRNService {
 			return result;
 		}
 	}
+	
+	
+	
 	@Transactional(rollbackFor = Exception.class)
 	public ArrayList<String> approveGRN(Integer pra_docno, String user) {
 		ArrayList<String> result = new ArrayList<String>();
@@ -105,7 +104,7 @@ public class GRNService {
 				enty_invLocation.setLoc_id(enty_grn.getGrnPK().getLocationid());
 				enty_invLocation.setItemcode(enty_grn.getItmcode());
 				enty_invLocation.setTemploc(100);
-				enty_invLocation.setStatus("INIT");
+				enty_invLocation.setStatus("LOC");
 				enty_invLocation.setMod_by("");
 				enty_invLocation.setMod_date("1000-01-01");
 				enty_invLocation.setCre_by(user);
@@ -142,5 +141,24 @@ public class GRNService {
 		}
 
 	}
+	
+	
+	public List<GRN> getAvailableGRN(){
+		
+		List<GRN> grn = grnRepositary.getAllAvailableGRN(7);
+		
+		
+		return grn;
+	}
+	
+	
+	public List<GRN> getGRN(Integer docno){
+		
+		List<GRN> grn = grnRepositary.findByGrnPKDocno(docno);
+		
+		return grn;
+		
+	}
+	
 
 }

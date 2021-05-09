@@ -15,7 +15,7 @@ public class InvlocationService {
 	private InvLocationRepositary inLocationRepo;
 	
 	public List<InvLocation> getLocInventory(Integer locid, String status){
-		return inLocationRepo.findBylocidAndStatus(locid, status);
+		return inLocationRepo.findByTemplocAndStatus(locid, status);
 		
 	}
 	

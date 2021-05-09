@@ -32,7 +32,7 @@ public class InvDisposeController {
 	}
 	
 	@GetMapping("/inventory/dispose/availble")
-	public List<Object> getAvailableGDN(){
+	public List<InvDispose> getAvailableGDN(){
 	System.out.println(invDisposeService.getAvailableGDN());
 			return invDisposeService.getAvailableGDN();
 		
@@ -45,6 +45,12 @@ public class InvDisposeController {
 		
 	}
 	
+	@GetMapping("/inventory/dispose/item/count")
+	public Integer getDisItemCount(){
+		
+			return invDisposeService.getDisInvCount();
+		
+	}
 
 	
 

@@ -1,5 +1,9 @@
 package com.example.demo.service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,9 +16,11 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.Locations;
 import com.example.demo.entity.Roles;
 import com.example.demo.entity.UserAuth;
+import com.example.demo.entity.UserLog;
 import com.example.demo.entity.Users;
 import com.example.demo.repositary.LocationRepository;
 import com.example.demo.repositary.RoleRepositary;
+import com.example.demo.repositary.UserLogRepositary;
 import com.example.demo.repositary.UsersRepositary;
 
 @Service
@@ -34,6 +40,15 @@ public class UserAuthenticationService {
 
 	@Autowired
 	LocationRepository locRepo;
+	
+	@Autowired
+	UserLogRepositary userLogRepo;
+	
+	LocalTime localTime = LocalTime.now(ZoneId.of("GMT+05:30"));
+	
+	static LocalDate date = LocalDate.now();
+	
+	
 
 	public HashMap<String, String> validateUser(UserAuth user_auth) {
 
@@ -71,6 +86,19 @@ public class UserAuthenticationService {
 				if (location == null) {
 					throw new Exception("User Location Not Define");
 				}
+				
+				UserLog newUserLog = new UserLog();
+				
+				newUserLog.setUsername(user.getUserpk().getUserid());
+				newUserLog.setLocation(user.getUserpk().getLocationid());
+				newUserLog.setAction("LOGIN");
+				newUserLog.setTimestamp(date.toString() + " "+localTime);
+				newUserLog.setMod_by("");
+				newUserLog.setMod_date("1000-01-01");
+				newUserLog.setCre_by("system");
+				newUserLog.setCre_date(date.toString());
+				
+				userLogRepo.save(newUserLog);
 
 				result.put("SUCCESS", "VALID USER");
 				result.put("USERID", user.getUserpk().getUserid());
@@ -79,7 +107,7 @@ public class UserAuthenticationService {
 				result.put("ROLE", role.getName());
 				return result;
 			} else {
-				result.put("FAILED", "Invalid Password");
+				result.put("FAILED", "Invalid user name or Password");
 				return result;
 
 			}

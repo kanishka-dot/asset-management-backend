@@ -19,6 +19,7 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -46,6 +47,82 @@ public class Report {
 
 			result.add("1");
 			result.add("E:\\Learn\\Spring Boot\\ITInventoryApi\\reports\\ItemMaster.pdf");
+			return result;
+
+		} catch (JRException e) {
+			result.add("0");
+			result.add(e.getLocalizedMessage());
+			return result;
+		} catch (SQLException e) {
+			result.add("0");
+			result.add(e.getLocalizedMessage());
+			return result;
+
+		}
+	}
+
+	@GetMapping("/report/penrepitem")
+	public ArrayList<String> penRepairItems() {
+
+		ArrayList<String> result = new ArrayList<String>();
+
+		try {
+			Connection con = dataSource.getDataSource();
+
+			final InputStream stream = this.getClass().getResourceAsStream("/penrep.jrxml");
+
+			final JasperReport report = JasperCompileManager.compileReport(stream);
+			
+
+			final JasperPrint print = JasperFillManager.fillReport(report, null, con);
+			
+			
+
+			final String filePath = "E:\\Learn\\Spring Boot\\ITInventoryApi\\reports";
+			JasperExportManager.exportReportToPdfFile(print, filePath + "\\pendingRepair.pdf");
+		
+			
+
+			result.add("1");
+			result.add("E:\\Learn\\Spring Boot\\ITInventoryApi\\reports\\pendingRepair.pdf");
+			return result;
+
+		} catch (JRException e) {
+			result.add("0");
+			result.add(e.getLocalizedMessage());
+			return result;
+		} catch (SQLException e) {
+			result.add("0");
+			result.add(e.getLocalizedMessage());
+			return result;
+
+		}
+	}
+	
+	@GetMapping("/report/pendingrepair/greater3days")
+	public ArrayList<String> penRepairMorethan3days() {
+
+		ArrayList<String> result = new ArrayList<String>();
+
+		try {
+			Connection con = dataSource.getDataSource();
+
+			final InputStream stream = this.getClass().getResourceAsStream("/penrep3.jrxml");
+
+			final JasperReport report = JasperCompileManager.compileReport(stream);
+			
+
+			final JasperPrint print = JasperFillManager.fillReport(report, null, con);
+			
+			
+
+			final String filePath = "E:\\Learn\\Spring Boot\\ITInventoryApi\\reports";
+			JasperExportManager.exportReportToPdfFile(print, filePath + "\\pendingRepairbeyond3days.pdf");
+		
+			
+
+			result.add("1");
+			result.add("E:\\Learn\\Spring Boot\\ITInventoryApi\\reports\\pendingRepairbeyond3days.pdf");
 			return result;
 
 		} catch (JRException e) {

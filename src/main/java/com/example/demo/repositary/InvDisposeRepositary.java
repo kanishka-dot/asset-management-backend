@@ -25,8 +25,11 @@ public interface InvDisposeRepositary extends JpaRepository<InvDispose, Integer>
 	
 	
 	@Transactional
-	@Modifying
-	@Query(value = "select  distinct(docno) from inv_doc_dispose u where u.status = 'NAP'", nativeQuery = true)
-	List<Object> getAllAvailableGDN();	
+	@Query(value = "select  *  from inv_doc_dispose u where u.status = 'NAP' group by docno", nativeQuery = true)
+	List<InvDispose> getAllAvailableGDN();	
+	
+	@Transactional
+	@Query(value = "select  count(*)  from inv_doc_dispose u where u.status = 'EXE' ", nativeQuery = true)
+	Integer getDisItemCount();	
 	
 }

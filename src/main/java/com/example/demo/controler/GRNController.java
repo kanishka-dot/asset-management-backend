@@ -42,5 +42,18 @@ public class GRNController {
 	public boolean getserialNo(@PathVariable String serial) {
 		return grnService.isSerialUnique(serial);
 	}
+	
+	
+	@GetMapping("/inventory/grn/getstatusnap")
+	public List<GRN> getserialNo() {
+		return grnService.getAvailableGRN();
+	}
+	
+	@GetMapping("/inventory/grn/{docno}")
+	public List<GRN> getGRN(@PathVariable Integer docno) {
+		return grnService.getGRN(docno);
+	}
+	
+	
 
 }

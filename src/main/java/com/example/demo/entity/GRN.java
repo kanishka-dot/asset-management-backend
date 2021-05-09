@@ -12,7 +12,7 @@ public class GRN {
 
 	
 	@EmbeddedId
-	private GRNPK grnPK;
+	private GrnPK grnPK;
 	
 	
 	@Column(name = "date")
@@ -47,18 +47,13 @@ public class GRN {
 	private String cre_date;
 
 	
-	
-	
-	
-	
-	
 
 
-	public GRNPK getGrnPK() {
+	public GrnPK getGrnPK() {
 		return grnPK;
 	}
 
-	public void setGrnPK(GRNPK grnPK) {
+	public void setGrnPK(GrnPK grnPK) {
 		this.grnPK = grnPK;
 	}
 

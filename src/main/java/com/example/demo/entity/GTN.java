@@ -1,35 +1,23 @@
 package com.example.demo.entity;
 
-import java.io.Serializable;
+
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+
 import javax.persistence.Table;
 
 @Entity
 @Table(name="inv_doc_gtn_inout")
-@IdClass(GTN.class)
-public class GTN implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class GTN  {
+
+
+	@EmbeddedId
+	private GtnPK gtnPK;
 	
-	@Id
-	@Column(name="docno")
-	private Integer docno;
-	@Id
-	@Column(name="seq_no")
-	private Integer seq_no;
-	@Id
-	@Column(name="doccode")
-	private String doccode;
-	@Id
-	@Column(name="itemcode")
-	private String itemcode;
+	
 	@Column(name="serialno")
 	private String serialno;
 	@Column(name="frmloc")
@@ -55,35 +43,14 @@ public class GTN implements Serializable{
 	@Column(name="cre_date")
 	private String cre_date;
 	
-	interface NamesOnly {
 
-		  String getFirstname();
-		  String getLastname();
-		}
 	
-	public Integer getDocno() {
-		return docno;
+
+	public GtnPK getGtnPK() {
+		return gtnPK;
 	}
-	public void setDocno(Integer docno) {
-		this.docno = docno;
-	}
-	public Integer getSeq_no() {
-		return seq_no;
-	}
-	public void setSeq_no(Integer seq_no) {
-		this.seq_no = seq_no;
-	}
-	public String getDoccode() {
-		return doccode;
-	}
-	public void setDoccode(String doccode) {
-		this.doccode = doccode;
-	}
-	public String getItemcode() {
-		return itemcode;
-	}
-	public void setItemcode(String itemcode) {
-		this.itemcode = itemcode;
+	public void setGtnPK(GtnPK gtnPK) {
+		this.gtnPK = gtnPK;
 	}
 	public String getSerialno() {
 		return serialno;
@@ -159,12 +126,12 @@ public class GTN implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "GTN [docno=" + docno + ", seq_no=" + seq_no + ", doccode=" + doccode + ", itemcode=" + itemcode
-				+ ", serialno=" + serialno + ", frmloc=" + frmloc + ", toloc=" + toloc + ", remark=" + remark
-				+ ", refno=" + refno + ", status=" + status + ", app_by=" + app_by + ", app_date=" + app_date
-				+ ", mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by=" + cre_by + ", cre_date=" + cre_date
-				+ "]";
+		return "GTN [gtnPK=" + gtnPK + ", serialno=" + serialno + ", frmloc=" + frmloc + ", toloc=" + toloc
+				+ ", remark=" + remark + ", refno=" + refno + ", status=" + status + ", app_by=" + app_by
+				+ ", app_date=" + app_date + ", mod_by=" + mod_by + ", mod_date=" + mod_date + ", cre_by=" + cre_by
+				+ ", cre_date=" + cre_date + "]";
 	}
+	
 	
 	
 	

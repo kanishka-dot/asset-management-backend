@@ -16,9 +16,9 @@ public class BeanConnection {
 	public Connection getDataSource() throws SQLException{ 
 	    DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create(); 
 	    dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
-        dataSourceBuilder.url("jdbc:mysql://149.56.134.121:3306/MyDB");
-	    dataSourceBuilder.username("kanishka"); 
-	    dataSourceBuilder.password("123456"); 
+        dataSourceBuilder.url("jdbc:mysql://localhost/mydb");
+	    dataSourceBuilder.username("root"); 
+	    dataSourceBuilder.password("123456789"); 
 	    return  dataSourceBuilder.build().getConnection(); 
 	}
 }

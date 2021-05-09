@@ -37,6 +37,11 @@ public InvItemController() {
 		return invitemservice.getInvItemById(itemcode);
 	}
 	
+	
+	@GetMapping("/inventory/item/count")
+	public Integer getInvItemCont() {
+		return invitemservice.getInvItemCount();
+	}
 
 	
 	@GetMapping("/inventory/getitems")
@@ -49,9 +54,9 @@ public InvItemController() {
 		return invitemservice.updateItemCode(invItem);
 	}
 	
-	@GetMapping("/inventory/getitems/status/{status}")
-	public List<InvItem> getAllActInvItem(@PathVariable String status) {
-		return invitemservice.getAllActInvItem(status);
+	@GetMapping("/inventory/getitems/status/{status}/{type}")
+	public List<InvItem> getAllActInvItem(@PathVariable String status, @PathVariable String type) {
+		return invitemservice.getAllActInvItem(status, type);
 	}
 	
 
