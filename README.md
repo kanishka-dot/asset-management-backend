@@ -2,4 +2,4 @@
 
 ER Diagram -
 
-![](readme/ER.png)
+![](readme/ER.PNG)
