@@ -9,6 +9,3 @@ https://github.com/kanishka-dot/asset-managment.git
 
 
 
-ER Diagram -
-
-![](readme/ER.PNG)
